@@ -6,21 +6,29 @@ import java.util.Scanner;
 
 public class Game {
 
+    private int lockPickDurability = 6;
     private Scanner scanner = new Scanner(System.in);
 
     public void gamePlay(Chest chestType){
 
         Map<String, String> vocabulary = wordsVocabulary();
 
-        System.out.println("Instructions: for moving lockpick enter letter\n" +
+        System.out.println("Instructions: for moving lock pick enter letter\n" +
                 "U - up | D - down | L - left | R - right | Q to quit\n" +
                 "You can also write full words \"go UP, DOWN, RIGHT, LEFT\"\n" +
-                "Follow feeling tips that tells how close you are to open the lock. Good Luck !\n");
+                "Follow feeling tips that tells how close you are to open the lock\n" +
+                "------ represents lock pick durability. Good Luck !\n");
+
         int pos = 1;
         while(true){
             System.out.println(chestType.chest().get(pos).getDescription());
 
             if(pos == 0 || pos == 10){
+                break;
+            }
+
+            if(this.lockPickDurability == 0){
+                System.out.println("Lock jammed");
                 break;
             }
 
@@ -40,9 +48,12 @@ public class Game {
 
             if(moves.containsKey(playerMove)){
                 pos = moves.get(playerMove);
+                System.out.println("\nKeep trying");
             }else{
-                System.out.println("You can not go that direction");
+                System.out.println("\nYou can not go that direction");
+                this.lockPickDurability -= 1;
             }
+            printLockPickDurability();
         }
     }
 
@@ -54,5 +65,12 @@ public class Game {
         vocabulary.put("LEFT", "L");
         vocabulary.put("RIGHT", "R");
         return  vocabulary;
+    }
+
+    public void printLockPickDurability(){
+        for(int i = 0; i < lockPickDurability; i++){
+            System.out.print("-");
+        }
+        System.out.println();
     }
 }
