@@ -12,8 +12,10 @@ public class Game {
 
         Map<String, String> vocabulary = wordsVocabulary();
 
-        System.out.println("Instructions enter: U - to move pick up, D to move pick down, " +
-                "L to move pick left, R to move pick right. Q to quit");
+        System.out.println("Instructions: for moving lockpick enter letter\n" +
+                "U - up | D - down | L - left | R - right | Q to quit\n" +
+                "You can also write full words \"go UP, DOWN, RIGHT, LEFT\"\n" +
+                "Follow feeling tips that tells how close you are to open the lock. Good Luck !\n");
         int pos = 1;
         while(true){
             System.out.println(chestType.chest().get(pos).getDescription());
