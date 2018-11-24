@@ -1,6 +1,7 @@
 package pickALock;
 
 import pickALock.chests.IronChest;
+import pickALock.chests.SteelChest;
 import pickALock.chests.WoodenChest;
 
 import java.util.InputMismatchException;
@@ -25,6 +26,8 @@ public class Menu {
                     game.gamePlay(new WoodenChest()); break;
                 case 2:
                     game.gamePlay(new IronChest()); break;
+                case 3:
+                    game.gamePlay(new SteelChest()); break;
                 default:
                     System.out.println("invalid number"); break;
             }
@@ -37,7 +40,7 @@ public class Menu {
                 "0 - to quit\n" +
                 "1 - to attempt to open wooden chest\n" +
                 "2 - to attempt to open iron chest\n" +
-                "3 - Work in progress //TODO next chests lock patterns\n");
+                "3 - to attempt to open steel chest\n");
     }
 
     public int integerScanner() {
